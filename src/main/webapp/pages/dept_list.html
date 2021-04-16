@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../vuejs/vuejs-2.5.16.js"></script>
+<script type="text/javascript" src="../vuejs/axios-0.18.0.js"></script>
+</head>
+<body>
+<div id="deptdiv">
+    <div id="deptlistdiv">
+        <table align="center" border="1" rules="all">
+            <tr>
+                <td colspan="100">
+                    姓名：<input type="text" v-model="searchEntity.deptname"/>
+                    <input type="button" value="搜索" @click="getDeptListConn()">
+                </td>
+            </tr>
+            <tr align="center" bgcolor="#00ffff">
+                <th bgcolor="red">编码</th>
+                <th bgcolor="orange">姓名</th>
+                <th colspan="100">操作</th>
+            </tr>
+            <tr v-for="d in deptlist" bgcolor="#00ffff" align="center">
+                <td>{{d.id}}</td>
+                <td>{{d.deptname}}</td>
+                <td>删除
+                    <button @click="toDeptPost(d.id)">选择职位</button>
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="100">
+                    当前{{page.currentPage}}/{{page.pageCount}}页;
+                    <button @click="paging(1)">首页</button>
+                    <button @click="paging(page.previousPage)">上一页</button>
+                    <button @click="paging(page.nextPage)">下一页</button>
+                    <button @click="paging(page.pageCount)">尾页</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="deptpostdiv">
+        <table border="1" rules="all" align="center">
+            <tr align="center">
+                <td colspan="100">
+                    <h1>目前正在给--{{entity.deptname}}--部门分配职位</h1>
+                </td>
+            </tr>
+            <tr align="center">
+                <td>
+                    职位
+                </td>
+                <td>
+                        <span v-for="p in plist">
+                            <input type="checkbox" v-model="postids" :value="p.id"/>{{p.postname}}<br>
+                        </span>
+                </td>
+            </tr>
+            <tr align="center" bgcolor="#0000ff">
+                <td colspan="100">
+                    <button @click="saveDeptPost()">保存</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../myjs/dept_list.js"></script>
+</html>
