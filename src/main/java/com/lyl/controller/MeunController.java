@@ -24,6 +24,8 @@ public class MeunController {
     @RequestMapping("/getMeunListByPid")
     public List<MeunBean> getMeunListByPid(@RequestParam(defaultValue = "1") Long pid){
         return meunService.getMeunListByPid(pid);
+
+
     }
 
     @RequestMapping("/saveMeun")
